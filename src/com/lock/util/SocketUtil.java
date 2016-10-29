@@ -7,21 +7,23 @@ import java.net.Socket;
 
 public class SocketUtil {
 	Socket socket = null;
+	OutputStream outputStream = null;
+	InputStream inputStream = null;
 
-	public SocketUtil(Socket socket) {
+	public SocketUtil(Socket socket,OutputStream outputStream,InputStream inputStream) {
 		super();
 		this.socket = socket;
+		this.outputStream = outputStream;
+		this.inputStream = inputStream;
 	}
 	
 	//发送数据
 	public void sendData(String data) throws IOException {
-		OutputStream outputStream = socket.getOutputStream();
 		outputStream.write(data.getBytes());
 	}
 	
 	//接收数据
 	public String receiveData() throws IOException {
-		InputStream inputStream = socket.getInputStream();
 		byte[] buf = new byte[1024];
 		int len = inputStream.read(buf);
 		if (len < 0) {

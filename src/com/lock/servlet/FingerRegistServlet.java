@@ -30,8 +30,7 @@ public class FingerRegistServlet extends HttpServlet {
 
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		Socket socket = StaticResource.socketList.get(0);
-		SocketUtil socketUtil = new SocketUtil(socket);
+		SocketUtil socketUtil = new SocketUtil(StaticResource.socket,StaticResource.outputStream,StaticResource.inputStream);
 		socketUtil.sendData("hello");
 	}
 

@@ -25,7 +25,9 @@ public class ListenSocket implements Runnable{
 		while (true) {
 			try {
 				Socket socket = serverSocket.accept();
-				StaticResource.socketList.add(socket);
+				StaticResource.socket = socket;
+				StaticResource.outputStream = socket.getOutputStream();
+				StaticResource.inputStream = socket.getInputStream();
 				new Thread(new OpenRecordSocket(socket)).start();
 				System.out.println("Socket已连接");
 			} catch (IOException e) {

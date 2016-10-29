@@ -14,7 +14,7 @@ public class OpenRecordSocket implements Runnable{
 	
 	public OpenRecordSocket(Socket socket) {
 		this.socket = socket;
-		socketUtil = new SocketUtil(socket);
+		socketUtil = new SocketUtil(socket,StaticResource.outputStream,StaticResource.inputStream);
 	}
 	
 	@Override
@@ -28,7 +28,7 @@ public class OpenRecordSocket implements Runnable{
 				}
 				System.out.println(text);
 			} catch (IOException e) {
-				StaticResource.socketList.remove(socket);
+				StaticResource.socket=null;
 				state = false;
 				System.out.println("Socket已经删除");
 			}

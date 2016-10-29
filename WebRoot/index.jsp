@@ -25,7 +25,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <form action="<c:url value='FingerRegistServlet'/>" method="post">
          <input name="name" placeholder="姓名" required/>
          <input name="studentId" placeholder="学号" required/>
-		 <button type="submit" >查询</button>
+		 <button type="submit" >注册</button>
     </form>
   </body>
 </html>
