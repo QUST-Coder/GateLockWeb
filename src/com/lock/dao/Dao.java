@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class Dao {
-	private String urlString = "jdbc:mysql://localhost:3306/regist";
+	private String urlString = "jdbc:mysql://localhost:3306/lock";
 	private String nameString = "root";
 	private String passwordString = "123456";
 	Connection conn= null;

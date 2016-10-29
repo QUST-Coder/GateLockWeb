@@ -3,6 +3,7 @@ package com.lock.socket;
 import java.io.IOException;
 import java.net.Socket;
 
+import com.lock.service.OpenRecordService;
 import com.lock.util.SocketUtil;
 import com.lock.util.StaticResource;
 
@@ -22,11 +23,8 @@ public class OpenRecordSocket implements Runnable{
 		while(state){
 			try {
 				System.out.println("准备接受");
-				String text =  socketUtil.receiveData();
-				if (text == null) {
-					
-				}
-				System.out.println(text);
+				String jsonString =  socketUtil.receiveData();
+				OpenRecordService openRecordService = new OpenRecordService(jsonString);
 			} catch (IOException e) {
 				StaticResource.socket=null;
 				state = false;
