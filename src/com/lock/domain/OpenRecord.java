@@ -1,12 +1,12 @@
 package com.lock.domain;
 
 public class OpenRecord {
-	String fin = null;
+	int fin = -1;
 	String time = null;
-	public String getFin() {
+	public int getFin() {
 		return fin;
 	}
-	public void setFin(String fin) {
+	public void setFin(int fin) {
 		this.fin = fin;
 	}
 	public String getTime() {
@@ -15,7 +15,7 @@ public class OpenRecord {
 	public void setTime(String time) {
 		this.time = time;
 	}
-	public OpenRecord(String fin, String time) {
+	public OpenRecord(int fin, String time) {
 		super();
 		this.fin = fin;
 		this.time = time;
