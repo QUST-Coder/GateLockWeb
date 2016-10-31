@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.lock.service.OpenDoorService;
-import com.lock.service.SocketOpenRecordService;
 
 @WebServlet("/OpenDoorServlet")
 public class OpenDoorServlet extends HttpServlet {
