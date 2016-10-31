@@ -23,7 +23,7 @@ public class OpenDoorService {
 		String sql = "SELECT passWord FROM User WHERE studentID = "+studentId+";";
 		ResultSet resultSet = dao.selectDate(sql);
 		while (resultSet.next()) {
-			String pass = resultSet.getString(0);
+			String pass = resultSet.getString(1);
 			if (pass == null) {
 				//结果为空，返回用户不存在
 				return "用户不存在";

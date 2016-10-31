@@ -28,7 +28,7 @@ public class SocketOpenRecordService {
 				ResultSet resultSet = dao.selectDate(selectStudentIdSql);
 				String studentId = null;
 				while (resultSet.next()) {
-					studentId = resultSet.getString(0);
+					studentId = resultSet.getString(1);
 				}
 				
 				String insertOpenRecordSql = "insert into OpenRecord(studentId,time) values('"+studentId+"','"+new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date())+"');";
