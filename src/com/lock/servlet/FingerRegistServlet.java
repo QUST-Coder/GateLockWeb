@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.Socket;
 
+import javax.enterprise.inject.New;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -32,6 +33,7 @@ public class FingerRegistServlet extends HttpServlet {
 			throws ServletException, IOException {
 		SocketUtil socketUtil = new SocketUtil(StaticResource.socket,StaticResource.outputStream,StaticResource.inputStream);
 		socketUtil.sendData("hello");
+		request.setAttribute("data", new Thread());
 	}
 
 	public void init() throws ServletException {

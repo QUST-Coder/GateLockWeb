@@ -10,22 +10,29 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <head>
     <base href="<%=basePath%>">
     
+    <script src="jquery-3.1.1.min.js" type="text/javascript"></script>
+    
+    <script type="text/javascript">
+    	function submit(){
+    	debugger
+    		var str = $('#123').val();
+    		alert(str);
+    	}
+    </script>
+    
     <title>My JSP 'index.jsp' starting page</title>
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
 	<meta http-equiv="expires" content="0">    
 	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 	<meta http-equiv="description" content="This is my page">
-	<!--
-	<link rel="stylesheet" type="text/css" href="styles.css">
-	-->
   </head>
   
   <body>
-    <form action="<c:url value='FingerRegistServlet'/>" method="post">
-         <input name="name" placeholder="姓名" required/>
+    <form  meth>
+         <input id="123" name="name" placeholder="姓名" required/>
          <input name="studentId" placeholder="学号" required/>
-		 <button type="submit" >注册</button>
+		 <buttin id="submit" type="submit" onclick="submit()" >注册</button>
     </form>
   </body>
 </html>
