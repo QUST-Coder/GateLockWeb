@@ -30,7 +30,7 @@ public class OpenDoorServlet extends HttpServlet {
 		OpenDoorService openDoorService = new OpenDoorService(studentId, passWord);
 		try {
 			String openResult = openDoorService.open();
-			request.setAttribute("openResult", openResult);
+			request.getSession().setAttribute("openResult", openResult);
 			response.sendRedirect(request.getContextPath() + "/open.jsp");
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();

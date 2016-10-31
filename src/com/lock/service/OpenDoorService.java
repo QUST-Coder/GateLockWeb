@@ -24,7 +24,7 @@ public class OpenDoorService {
 		ResultSet resultSet = dao.selectDate(sql);
 		while (resultSet.next()) {
 			String pass = resultSet.getString(1);
-			if (pass == null) {
+			if (pass.equals(null)) {
 				//结果为空，返回用户不存在
 				return "用户不存在";
 			}else if (passWord.equals(pass)) {
