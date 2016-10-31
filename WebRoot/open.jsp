@@ -21,9 +21,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-  	<form action="OpenDoorServlet" method="post"></form>
+   <form action="<c:url value='OpenDoorServlet'/>" method="post">
   		<input name="studentId" placeholder="学号" required/>
          <input name="passWord" type="password" placeholder="密码" required/>
   		<input type="submit">
+  	</form>
+  		${sessionScope.openResult}
+  		
   </body>
 </html>
