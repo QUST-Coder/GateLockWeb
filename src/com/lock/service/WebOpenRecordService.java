@@ -7,10 +7,10 @@ import com.google.gson.Gson;
 import com.lock.dao.Dao;
 import com.lock.domain.OpenRecord;
 
-public class OpenRecordService {
+public class WebOpenRecordService {
 	String finger = null;
 	String jsonString = null;
-	public OpenRecordService(String jsonString) {
+	public WebOpenRecordService(String jsonString) {
 		this.jsonString = jsonString;
 		savaOpenRecord();
 	}

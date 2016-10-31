@@ -6,6 +6,7 @@ import java.net.Socket;
 
 import javax.enterprise.inject.New;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -13,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.lock.util.SocketUtil;
 import com.lock.util.StaticResource;
 
+@WebServlet("/FingerRegistServlet")
 public class FingerRegistServlet extends HttpServlet {
 
 	public FingerRegistServlet() {

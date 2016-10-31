@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.net.Socket;
 
 import com.google.gson.Gson;
-import com.lock.service.OpenRecordService;
+import com.lock.service.SocketOpenRecordService;
 import com.lock.util.SocketUtil;
 import com.lock.util.StaticResource;
 
@@ -25,7 +25,7 @@ public class OpenRecordSocket implements Runnable{
 			try {
 				System.out.println("准备接受");
 				String jsonString =  socketUtil.receiveData();
-				OpenRecordService openRecordService = new OpenRecordService(jsonString);
+				SocketOpenRecordService openRecordService = new SocketOpenRecordService(jsonString);
 			} catch (IOException e) {
 				StaticResource.socket=null;
 				state = false;
