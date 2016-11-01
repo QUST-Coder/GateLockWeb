@@ -27,11 +27,12 @@ public class OpenDoorServlet extends HttpServlet {
 		String studentId = request.getParameter("studentId");
 		String passWord = request.getParameter("passWord");
 		
-		WebOpenDoorService openDoorService = new WebOpenDoorService(studentId, passWord);
+		WebOpenDoorService WebOpenDoorService = new WebOpenDoorService(studentId, passWord);
 		try {
-			String openResult = openDoorService.open();
+			String openResult = WebOpenDoorService.open();
 			request.getSession().setAttribute("openResult", openResult);
 			response.sendRedirect(request.getContextPath() + "/open.jsp");
+		
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (SQLException e) {

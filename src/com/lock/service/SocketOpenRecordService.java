@@ -7,7 +7,6 @@ import java.util.Date;
 
 import com.google.gson.Gson;
 import com.lock.dao.Dao;
-import com.lock.domain.OpenRecord;
 
 public class SocketOpenRecordService {
 	Dao dao = new Dao();
