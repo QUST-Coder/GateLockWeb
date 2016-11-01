@@ -23,11 +23,7 @@ public class RegistState extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		if (StaticResource.addResult == null) {
-			
-		} else {
-			response.getWriter().print(StaticResource.addResult);
-		}
+		response.getWriter().print("{\"msg\":\""+StaticResource.addResult+"\"}");
 	}
 
 }

@@ -7,9 +7,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class Dao {
-	private String urlString = "jdbc:mysql://localhost:3306/lock";
-	private String nameString = "root";
-	private String passwordString = "123456";
+	private String urlString = "jdbc:mysql://192.168.0.4:3306/lock";
+	private String nameString = "admin";
+	private String passwordString = "zxcvbnm...@@@";
 	Connection conn= null;
 	Statement statement = null;
 	ResultSet rs = null;

@@ -25,6 +25,9 @@ public class ListenerSocket implements Runnable{
 		socketUtil = new SocketUtil(socket,StaticResource.outputStream,StaticResource.inputStream);
 	}
 	
+	/**
+	 * 线程不断接收硬件传来的json
+	 */
 	@Override
 	public void run() {
 		while(state){
@@ -63,109 +66,18 @@ public class ListenerSocket implements Runnable{
 			StaticResource.battery = map.get("Battery");
 		}else if (map.get("act").equals("successful")) {
 			//注册状态检测
-			StaticResource.addResult = "successful";
+			StaticResource.lockState = "successful";
 		}else if (map.get("act").equals("fingerResult")) {
 			if(map.get("msg").equals("521")){
 				//注册成功,返回信息并将指纹写入静态类
 				StaticResource.fingerData = new FingerData("",map.get("fin1"),map.get("fin2"),map.get("fin3"),map.get("fin4"),map.get("fin5"));
-				StaticResource.addResult = msg(map.get("msg"));
+				StaticResource.addResult = map.get("msg");
 			}else{
 				//注册过程未完成，返回相应信息
-				StaticResource.addResult = msg(map.get("msg"));
+				StaticResource.addResult = map.get("msg");
 			}
-		}else if (map.get("msg").equals("successful")) {
-			StaticResource.lockState = "1";
+		}else {
+			System.out.println("未知json");
 		}
-	}
-	/**
-	 * 识别响应码
-	 * @param msg
-	 * @return 响应码对应的信息
-	 */
-	private String msg(String msg) {
-		int m = Integer.parseInt(msg);
-		String res = null;
-		switch (m) {
-		case 111:
-			res = "第一个手指，第一次识别成功!请再次识别同一手指！";
-			break;
-		
-		case 110:
-			res = "第一个手指，第一次识别失败！请再次识别同一手指！";
-			break;
-		
-		case 121:
-			res = "第一个手指，第二次识别成功！请按压下个手指！";
-			break;
-		
-		case 120:
-			res = "第一个手指，第二次识别失败！请再次识别同一手指！";
-			break;
-		
-		case 211:
-			res = "第二个手指，第一次识别成功！请再次识别同一手指！";
-			break;
-		
-		case 210:
-			res = "第二个手指，第一次识别失败！请再次识别同一手指！";
-			break;
-		
-		case 221:
-			res = "第二个手指，第二次识别成功!请按压下个手指！";
-			break;
-		
-		case 220:
-			res = "第二个手指，第二次识别成功！请再次识别同一手指！";
-			break;
-		
-		case 311:
-			res = "第三个手指，第一次识别成功！请再次识别同一手指！";
-			break;
-		
-		case 310:
-			res = "第三个手指，第一次识别成功!请再次识别同一手指！";
-			break;
-		
-		case 321:
-			res = "第三个手指，第二次识别成功！请按压下个手指！";
-			break;
-
-		case 320:
-			res = "第三个手指，第二次识别成功！请再次识别同一手指！";
-			break;
-		
-		case 411:
-			res = "第四个手指，第一次识别成功！请再次识别同一手指！";
-			break;
-		
-		case 410:
-			res = "第四个手指，第一次识别成功！请再次识别同一手指！";
-			break;
-		
-		case 421:
-			res = "第四个手指，第二次识别成功！请按压下个手指！";
-			break;
-
-		case 420:
-			res = "第四个手指，第二次识别成功！请再次识别同一手指！";
-			break;
-		
-		case 511:
-			res = "第五个手指，第一次识别成功！请再次识别同一手指！";
-			break;
-		
-		case 510:
-			res = "第五个手指，第一次识别成功！请再次识别同一手指！";
-			break;
-		
-		case 521:
-			res = "第五个手指，第二次识别成功！您的指纹已经识别完成！";
-			break;
-
-		case 520:
-			res = "第五个手指，第二次识别成功！请再次识别同一手指！";
-			break;			
-		}
-		return res;
 	}
 }

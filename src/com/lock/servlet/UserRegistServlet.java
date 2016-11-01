@@ -17,7 +17,7 @@ import com.lock.service.UserRegistService;
 import com.lock.util.SocketUtil;
 import com.lock.util.StaticResource;
 
-@WebServlet("/FingerRegistServlet")
+@WebServlet("/UserRegistServlet")
 public class UserRegistServlet extends HttpServlet {
 
 	public UserRegistServlet() {
@@ -36,15 +36,20 @@ public class UserRegistServlet extends HttpServlet {
 
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		System.out.println(request.getParameter("name"));
 		User user = new User(request.getParameter("name"),request.getParameter("studentId"),request.getParameter("passWord"));
 		FingerData fingerData = StaticResource.fingerData;
 		UserRegistService userRegistService = new UserRegistService(user, fingerData);
 		boolean result = userRegistService.regist();
+		StaticResource.addResult = "";
+		StaticResource.lockState = "";
+		StaticResource.fingerData = null;
+		
 		if (result) {
-			request.setAttribute("result", "注册成功");
+			request.getSession().setAttribute("result", "注册成功");
 			response.sendRedirect(request.getContextPath() + "/index.jsp");
 		}else {
-			request.setAttribute("result", "注册失败，请重新注册");
+			request.getSession().setAttribute("result", "注册失败，请重新注册");
 			response.sendRedirect(request.getContextPath() + "/index.jsp");
 		}
 	}

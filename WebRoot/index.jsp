@@ -10,16 +10,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <head>
     <base href="<%=basePath%>">
     
-    <script src="jquery-3.1.1.min.js" type="text/javascript"></script>
-    
-    <script type="text/javascript">
-    	function submit(){
-    	debugger
-    		var str = $('#name').val();
-    		alert(str);
-    	}
-    </script>
-    
     <title>My JSP 'index.jsp' starting page</title>
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
@@ -29,11 +19,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-    <form  meth>
-         <input id="name" name="name" placeholder="姓名" required/>
+    <form action="<c:url value='/UserRegistServlet'/>" method="post">
+         <input name="name" placeholder="姓名" required/>
          <input name="studentId" placeholder="学号" required/>
          <input name="passWord" type="password" placeholder="密码" required/>
-		 <buttin id="submit" type="submit" onclick="submit()" >注册</button>
+		 <input type="submit" />
     </form>
+      		${sessionScope.result}
+    
   </body>
 </html>

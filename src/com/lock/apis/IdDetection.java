@@ -23,10 +23,13 @@ public class IdDetection extends HttpServlet {
     }
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String id = (String) request.getParameter("id");
+		String id = (String) request.getParameter("studentId");
 		IdDetectionService idDetectionService = new IdDetectionService();
 		String result = idDetectionService.select(id);
-		response.getWriter().print(result);
+		if (result.equals(id)) {
+			response.getWriter().print("{\"msg\":\"success\"}");
+		} else {
+			response.getWriter().print("{\"msg\":\"fail\"}");
+		}
 	}
-
 }

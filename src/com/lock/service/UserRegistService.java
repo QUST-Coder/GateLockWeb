@@ -18,7 +18,7 @@ public class UserRegistService {
 	
 	public boolean regist(){
 		String insertUserSql = "insert into User values('"+user.getName()+"','"+user.getStudentId()+"','"+user.getPassWord()+"')";
-		String insertFingerSql = "insert into User values('"+user.getStudentId()+"','"+fingerData.getFin1()+"','"+fingerData.getFin2()+"','"+fingerData.getFin3()+"','"+fingerData.getFin4()+"','"+fingerData.getFin5()+"')";
+		String insertFingerSql = "insert into FingerData values('"+user.getStudentId()+"','"+fingerData.getFin1()+"','"+fingerData.getFin2()+"','"+fingerData.getFin3()+"','"+fingerData.getFin4()+"','"+fingerData.getFin5()+"')";
 		try {
 			dao.insertDate(insertUserSql);
 			dao.insertDate(insertFingerSql);

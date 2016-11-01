@@ -22,10 +22,29 @@ public class FingerRegistService {
 			StaticResource.inputStream = null;
 			System.out.println("Socket已经删除");
 		}
-		if (StaticResource.lockState != null) {
-			if (StaticResource.lockState.equals("1")) {
-				return true;
+		
+		Integer a = 1;
+		for (int i = 0; i < 99999; i++) {
+			for (int j = 0; i < 99999; i++) {
+				for (int k = 0; i < 99999; i++) {
+					for (int l = 0; i < 99999; i++) {
+						for (int m = 0; i < 99999; i++) {
+							for (int n = 0; i < 99999; i++) {
+								a++;
+							}
+
+						}
+
+					}
+
+				}
+
 			}
+
+		}
+		
+		if (StaticResource.lockState.equals("successful")) {
+			return true;
 		}
 		return false;
 	}

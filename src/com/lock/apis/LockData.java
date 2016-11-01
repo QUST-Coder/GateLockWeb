@@ -8,13 +8,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.lock.service.FingerRegistService;
+import com.lock.util.StaticResource;
 
-@WebServlet("/apis/fingerregist")
-public class FingerRegist extends HttpServlet {
+@WebServlet("/apis/lockdata")
+public class LockData extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
-	public FingerRegist() {
+       
+    public LockData() {
         super();
     }
 
@@ -23,12 +23,8 @@ public class FingerRegist extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		FingerRegistService fingerRegistService = new FingerRegistService();
-		boolean result = fingerRegistService.regist();
-		if (result) {
-			response.getWriter().print("{\"msg\":\"success\"}");
-		}else if (!result) {
-			response.getWriter().print("{\"msg\":\"fail\"}");
-		}
+		response.getWriter().print("bettery:"+StaticResource.battery+"   ");
+		response.getWriter().print("time:"+StaticResource.time);
 	}
+
 }
