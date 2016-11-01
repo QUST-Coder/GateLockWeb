@@ -11,13 +11,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.lock.domain.FingerData;
+import com.lock.domain.User;
+import com.lock.service.UserRegistService;
 import com.lock.util.SocketUtil;
 import com.lock.util.StaticResource;
 
 @WebServlet("/FingerRegistServlet")
-public class FingerRegistServlet extends HttpServlet {
+public class UserRegistServlet extends HttpServlet {
 
-	public FingerRegistServlet() {
+	public UserRegistServlet() {
 		super();
 	}
 
@@ -33,9 +36,17 @@ public class FingerRegistServlet extends HttpServlet {
 
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		SocketUtil socketUtil = new SocketUtil(StaticResource.socket,StaticResource.outputStream,StaticResource.inputStream);
-		socketUtil.sendData("hello");
-		request.setAttribute("data", new Thread());
+		User user = new User(request.getParameter("name"),request.getParameter("studentId"),request.getParameter("passWord"));
+		FingerData fingerData = StaticResource.fingerData;
+		UserRegistService userRegistService = new UserRegistService(user, fingerData);
+		boolean result = userRegistService.regist();
+		if (result) {
+			request.setAttribute("result", "注册成功");
+			response.sendRedirect(request.getContextPath() + "/index.jsp");
+		}else {
+			request.setAttribute("result", "注册失败，请重新注册");
+			response.sendRedirect(request.getContextPath() + "/index.jsp");
+		}
 	}
 
 	public void init() throws ServletException {

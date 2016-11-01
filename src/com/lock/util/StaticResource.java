@@ -16,5 +16,6 @@ public class StaticResource {
 	public static String battery = null;
 	public static String addResult = null;
 	public static FingerData fingerData = null;
+	public static String lockState= null;
 	
 }

@@ -39,7 +39,9 @@ public class ListenerSocket implements Runnable{
 				//判断json的act字段内容，采取操作
 				jsonOperate(map);
 			} catch (IOException e) {
-				StaticResource.socket=null;
+				StaticResource.socket = null;
+				StaticResource.outputStream = null;
+				StaticResource.inputStream = null;
 				state = false;
 				System.out.println("Socket已经删除");
 			}
@@ -64,13 +66,15 @@ public class ListenerSocket implements Runnable{
 			StaticResource.addResult = "successful";
 		}else if (map.get("act").equals("fingerResult")) {
 			if(map.get("msg").equals("521")){
-				//注册成功
+				//注册成功,返回信息并将指纹写入静态类
 				StaticResource.fingerData = new FingerData("",map.get("fin1"),map.get("fin2"),map.get("fin3"),map.get("fin4"),map.get("fin5"));
 				StaticResource.addResult = msg(map.get("msg"));
-			}else {
+			}else{
 				//注册过程未完成，返回相应信息
 				StaticResource.addResult = msg(map.get("msg"));
 			}
+		}else if (map.get("msg").equals("successful")) {
+			StaticResource.lockState = "1";
 		}
 	}
 	/**
