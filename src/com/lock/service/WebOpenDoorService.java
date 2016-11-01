@@ -8,10 +8,10 @@ import com.lock.dao.Dao;
 import com.lock.util.SocketUtil;
 import com.lock.util.StaticResource;
 
-public class OpenDoorService {
+public class WebOpenDoorService {
 	String studentId = null;
 	String passWord = null;
-	public OpenDoorService(String studentId, String passWord) {
+	public WebOpenDoorService(String studentId, String passWord) {
 		super();
 		this.studentId = studentId;
 		this.passWord = passWord;
@@ -33,6 +33,7 @@ public class OpenDoorService {
 				new SocketUtil(StaticResource.socket, StaticResource.outputStream, StaticResource.inputStream).sendData(data);
 				//将开门记录存入数据库(构造方法自动调用相关代码)
 				WebOpenRecordService webOpenRecordService = new WebOpenRecordService(studentId);
+				webOpenRecordService.savaOpenRecord();
 				return "开门成功";
 			}else {
 				//密码不正确

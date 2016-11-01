@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.lock.service.OpenDoorService;
+import com.lock.service.WebOpenDoorService;
 
 @WebServlet("/OpenDoorServlet")
 public class OpenDoorServlet extends HttpServlet {
@@ -27,7 +27,7 @@ public class OpenDoorServlet extends HttpServlet {
 		String studentId = request.getParameter("studentId");
 		String passWord = request.getParameter("passWord");
 		
-		OpenDoorService openDoorService = new OpenDoorService(studentId, passWord);
+		WebOpenDoorService openDoorService = new WebOpenDoorService(studentId, passWord);
 		try {
 			String openResult = openDoorService.open();
 			request.getSession().setAttribute("openResult", openResult);

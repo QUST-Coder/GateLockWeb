@@ -10,7 +10,7 @@ import com.lock.util.StaticResource;
  * 不断侦听Socket连接，将连接的Socket记录，并开启线程接受传来的数据
  * @author plzwb
  */
-public class ListenSocket implements Runnable{
+public class AcceptSocket implements Runnable{
 	ServerSocket serverSocket = null;
 	
 	@Override
@@ -24,11 +24,14 @@ public class ListenSocket implements Runnable{
 		
 		while (true) {
 			try {
+				//获取socket
 				Socket socket = serverSocket.accept();
 				StaticResource.socket = socket;
+				//设置输出输入流
 				StaticResource.outputStream = socket.getOutputStream();
 				StaticResource.inputStream = socket.getInputStream();
-				new Thread(new OpenRecordSocket(socket)).start();
+				//启动新线程监听
+				new Thread(new ListenerSocket(socket)).start();
 				System.out.println("Socket已连接");
 			} catch (IOException e) {
 				e.printStackTrace();

@@ -1,6 +1,7 @@
 package com.lock.service;
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -9,34 +10,34 @@ import com.lock.dao.Dao;
 import com.lock.domain.OpenRecord;
 
 public class SocketOpenRecordService {
-	String finger = null;
-	String jsonString = null;
-	public SocketOpenRecordService(String jsonString) {
-		this.jsonString = jsonString;
-		savaOpenRecord();
+	Dao dao = new Dao();
+	Gson gson = new Gson();
+	String fin = null;
+	String studentId = null;
+	
+	public SocketOpenRecordService(String fin){
+		this.fin = fin;
+		
 	}
 	
-	public void savaOpenRecord() {
-		Gson gson = new Gson();
+	public void savaOpenRecord(){
+		String selectStudentIdSql = "SELECT studentId FROM FingerDate "
+				+ "WHERE fin1 = "+fin+"or fin2 = "+fin+" or fin3 = "+fin+" or fin4 = "+fin+" or fin5 = "+fin+" ;";
+		ResultSet resultSet;
 		try {
-			OpenRecord openRecord = gson.fromJson(jsonString, OpenRecord.class);
-			//判断是否是存储开门记录的Socket
-			if (openRecord.getFin() != -1) {
-				int fin = openRecord.getFin();
-				Dao dao = new Dao();
-				String selectStudentIdSql = "SELECT studentId FROM FingerDate WHERE fin1 = "+fin+"or fin2 = "+fin+" or fin3 = "+fin+" or fin4 = "+fin+" or fin5 = "+fin+" ;";
-				ResultSet resultSet = dao.selectDate(selectStudentIdSql);
-				String studentId = null;
-				while (resultSet.next()) {
-					studentId = resultSet.getString(1);
-				}
-				
-				String insertOpenRecordSql = "insert into OpenRecord(studentId,time) values('"+studentId+"','"+new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date())+"');";
-				dao.insertDate(insertOpenRecordSql);
-				dao.closeAll();
+			resultSet = dao.selectDate(selectStudentIdSql);
+			//读取用户ID
+			while (resultSet.next()) {
+				studentId = resultSet.getString(1);
 			}
-		} catch (Exception e) {
-			
+			//插入用户开门记录
+			String insertOpenRecordSql = "insert into OpenRecord(studentId,time) values('"+studentId+"','"+new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date())+"');";
+			dao.insertDate(insertOpenRecordSql);
+			dao.closeAll();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			System.out.println("数据库异常");
 		}
-	}
+		}
 }
