@@ -16,7 +16,11 @@ import com.lock.domain.User;
 import com.lock.service.UserRegistService;
 import com.lock.util.SocketUtil;
 import com.lock.util.StaticResource;
-
+/**
+ * 请求用户注册
+ * @author GarryChung
+ * 需保证门锁已录入完成
+ */
 @WebServlet("/UserRegistServlet")
 public class UserRegistServlet extends HttpServlet {
 
