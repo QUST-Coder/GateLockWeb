@@ -15,6 +15,7 @@ import com.lock.util.StaticResource;
 public class WebOpenDoorService {
 	String studentId = null;
 	String passWord = null;
+	Dao dao = new Dao();
 	public WebOpenDoorService(String studentId, String passWord) {
 		super();
 		this.studentId = studentId;
@@ -22,12 +23,13 @@ public class WebOpenDoorService {
 	}
 	
 	public String open() throws ClassNotFoundException, SQLException, IOException {
-		Dao dao = new Dao();
 		//查询用户密码
 		String sql = "SELECT passWord FROM User WHERE studentID = "+studentId+";";
 		ResultSet resultSet = dao.selectDate(sql);
 		while (resultSet.next()) {
 			String pass = resultSet.getString(1);
+			//查询完毕，关闭数据库
+			dao.closeAll();			
 			if (pass.equals("")) {
 				//结果为空，返回用户不存在
 				return "用户不存在";

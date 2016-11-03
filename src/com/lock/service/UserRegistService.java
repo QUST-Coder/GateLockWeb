@@ -26,7 +26,9 @@ public class UserRegistService {
 		try {
 			dao.insertDate(insertUserSql);
 			dao.insertDate(insertFingerSql);
+			dao.closeAll();
 		} catch (ClassNotFoundException e) {
+			
 		} catch (SQLException e) {
 			System.out.println("用户注册数据库异常");
 			return false;

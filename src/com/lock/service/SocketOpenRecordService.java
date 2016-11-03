@@ -42,5 +42,5 @@ public class SocketOpenRecordService {
 		} catch (SQLException e) {
 			System.out.println("数据库异常");
 		}
-		}
+	}
 }

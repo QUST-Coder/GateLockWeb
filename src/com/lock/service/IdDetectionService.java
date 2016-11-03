@@ -15,9 +15,8 @@ public class IdDetectionService {
 	
 	public String select(String studentId) {
 				String sql = "SELECT studentId FROM User WHERE studentID = "+studentId+";";
-				ResultSet resultSet;
 				try {
-					resultSet = dao.selectDate(sql);
+					ResultSet resultSet = dao.selectDate(sql);
 					while (resultSet.next()) {
 						id = resultSet.getString(1);
 					}
@@ -25,7 +24,7 @@ public class IdDetectionService {
 				} catch (ClassNotFoundException e) {
 					e.printStackTrace();
 				} catch (SQLException e) {
-					System.out.println("用户ID查询数据库异常");
+					System.out.println("用户ID查重数据库异常");
 				}
 				return id;
 	}
