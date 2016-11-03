@@ -7,7 +7,11 @@ import java.sql.SQLException;
 import com.lock.dao.Dao;
 import com.lock.util.SocketUtil;
 import com.lock.util.StaticResource;
-
+/**
+ * Web开门服务
+ * @author GarryChung
+ *
+ */
 public class WebOpenDoorService {
 	String studentId = null;
 	String passWord = null;
@@ -24,7 +28,7 @@ public class WebOpenDoorService {
 		ResultSet resultSet = dao.selectDate(sql);
 		while (resultSet.next()) {
 			String pass = resultSet.getString(1);
-			if (pass.equals(null)) {
+			if (pass.equals("")) {
 				//结果为空，返回用户不存在
 				return "用户不存在";
 			}else if (passWord.equals(pass)) {

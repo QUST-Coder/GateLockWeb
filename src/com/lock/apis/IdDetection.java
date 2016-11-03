@@ -9,7 +9,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.lock.service.IdDetectionService;
-
+/**
+ * 用户ID查重
+ * @author GarryChung
+ *
+ */
 @WebServlet("/apis/iddetection")
 public class IdDetection extends HttpServlet {
 	private static final long serialVersionUID = 1L;

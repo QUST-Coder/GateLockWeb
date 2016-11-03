@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.lock.service.WebOpenDoorService;
 /**
- * 请求开门
+ * 开门Servelet
  * @author GarryChung
  *
  */
@@ -24,7 +24,7 @@ public class OpenDoorServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doPost(request, response);
+		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -33,7 +33,9 @@ public class OpenDoorServlet extends HttpServlet {
 		
 		WebOpenDoorService WebOpenDoorService = new WebOpenDoorService(studentId, passWord);
 		try {
+			//发送开门请求，由Service负责验证用户
 			String openResult = WebOpenDoorService.open();
+			//返回开门结果
 			request.getSession().setAttribute("openResult", openResult);
 			response.sendRedirect(request.getContextPath() + "/open.jsp");
 		

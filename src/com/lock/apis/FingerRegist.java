@@ -9,7 +9,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.lock.service.FingerRegistService;
-
+/**
+ * 指纹注册API
+ * @author GarryChung
+ * 请求门锁开始检测指纹
+ */
 @WebServlet("/apis/fingerregist")
 public class FingerRegist extends HttpServlet {
 	private static final long serialVersionUID = 1L;

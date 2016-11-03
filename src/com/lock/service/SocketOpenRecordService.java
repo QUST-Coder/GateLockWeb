@@ -7,7 +7,11 @@ import java.util.Date;
 
 import com.google.gson.Gson;
 import com.lock.dao.Dao;
-
+/**
+ * Socket开锁记录服务
+ * @author GarryChung
+ * 使用指纹开锁，记录开锁记录服务
+ */
 public class SocketOpenRecordService {
 	Dao dao = new Dao();
 	Gson gson = new Gson();

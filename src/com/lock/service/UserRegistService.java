@@ -5,7 +5,11 @@ import java.sql.SQLException;
 import com.lock.dao.Dao;
 import com.lock.domain.FingerData;
 import com.lock.domain.User;
-
+/**
+ * 用户注册服务
+ * @author GarryChung
+ *
+ */
 public class UserRegistService {
 	Dao dao = new Dao();
 	User user = null;

@@ -9,7 +9,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.lock.util.StaticResource;
-
+/**
+ * 注册状态查询
+ * @author GarryChung
+ * 开始录入指纹后，查询指纹录入情况
+ */
 @WebServlet("/apis/registstate")
 public class RegistState extends HttpServlet {
 	private static final long serialVersionUID = 1L;

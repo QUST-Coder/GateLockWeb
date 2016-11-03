@@ -17,7 +17,7 @@ import com.lock.service.UserRegistService;
 import com.lock.util.SocketUtil;
 import com.lock.util.StaticResource;
 /**
- * 请求用户注册
+ * 用户注册Servlet
  * @author GarryChung
  * 需保证门锁已录入完成
  */
@@ -34,27 +34,37 @@ public class UserRegistServlet extends HttpServlet {
 
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		doPost(request, response);
+
 	}
 
 
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		System.out.println(request.getParameter("name"));
-		User user = new User(request.getParameter("name"),request.getParameter("studentId"),request.getParameter("passWord"));
-		FingerData fingerData = StaticResource.fingerData;
-		UserRegistService userRegistService = new UserRegistService(user, fingerData);
-		boolean result = userRegistService.regist();
-		StaticResource.addResult = "";
-		StaticResource.lockState = "";
-		StaticResource.fingerData = null;
-		
-		if (result) {
-			request.getSession().setAttribute("result", "注册成功");
-			response.sendRedirect(request.getContextPath() + "/index.jsp");
+		//设置数据编码
+		request.setCharacterEncoding("utf-8");
+		//用于储存是否注册成功
+		boolean result = false;
+		//判断fingetData是否为空，为空代表尚未录入指纹
+		if (StaticResource.fingerData != null) {
+			User user = new User(request.getParameter("name"),request.getParameter("studentId"),request.getParameter("passWord"));
+			FingerData fingerData = StaticResource.fingerData;
+			UserRegistService userRegistService = new UserRegistService(user, fingerData);
+			result = userRegistService.regist();
+			//判断注册结果
+			if (result) {
+				//注册成功，置空所有的变量
+				StaticResource.addResult = "";
+				StaticResource.lockState = "";
+				StaticResource.fingerData = null;
+				request.getSession().setAttribute("result", "注册成功");
+				response.sendRedirect(request.getContextPath() + "/regist.jsp");
+			}else {
+				request.getSession().setAttribute("result", "注册失败，请重新注册");
+				response.sendRedirect(request.getContextPath() + "/regist.jsp");
+			}
 		}else {
-			request.getSession().setAttribute("result", "注册失败，请重新注册");
-			response.sendRedirect(request.getContextPath() + "/index.jsp");
+			request.getSession().setAttribute("result", "注册失败，您还没有录入指纹！");
+			response.sendRedirect(request.getContextPath() + "/regist.jsp");
 		}
 	}
 

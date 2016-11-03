@@ -5,7 +5,11 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import com.lock.dao.Dao;
-
+/**
+ * Web开门记录服务
+ * @author GarryChung
+ *
+ */
 public class WebOpenRecordService {
 	Dao dao = new Dao();
 	String studentId = null;

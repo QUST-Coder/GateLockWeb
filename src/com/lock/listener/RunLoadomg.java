@@ -6,7 +6,7 @@ import javax.servlet.annotation.WebListener;
 
 import com.lock.socket.AcceptSocket;
 /**
- * 侦听器程序启动时运行
+ * Socket侦听
  * @author plzwb
  *
  */

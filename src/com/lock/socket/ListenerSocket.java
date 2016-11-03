@@ -11,7 +11,7 @@ import com.lock.service.SocketOpenRecordService;
 import com.lock.util.SocketUtil;
 import com.lock.util.StaticResource;
 /**
- * 解析
+ * Socket数据监听
  * @author GarryChung
  *
  */

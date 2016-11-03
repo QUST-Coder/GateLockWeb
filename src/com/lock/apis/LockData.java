@@ -9,7 +9,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.lock.util.StaticResource;
-
+/**
+ * 门锁状态查询
+ * @author GarryChung
+ *
+ */
 @WebServlet("/apis/lockdata")
 public class LockData extends HttpServlet {
 	private static final long serialVersionUID = 1L;
