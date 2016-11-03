@@ -19,7 +19,7 @@ import com.lock.service.AdminLoginService;
  * @author GarryChung
  *
  */
-@WebFilter(filterName="UserFilter",urlPatterns={"/apis","/regist.jsp"})  
+@WebFilter(filterName="UserFilter",urlPatterns={"/apis/*","/regist.jsp"})  
 public class UserFilter implements Filter {
 
     public UserFilter() {
@@ -33,8 +33,8 @@ public class UserFilter implements Filter {
 		HttpServletResponse httpServletResponse = (HttpServletResponse) response;
 		HttpServletRequest httpServletRequest = (HttpServletRequest) request;
 		//存储用户名密码
-		String id = request.getParameter("id");
-		String passWord = request.getParameter("passWord");
+		String id = (String) httpServletRequest.getSession().getAttribute("id");
+		String passWord = (String) httpServletRequest.getSession().getAttribute("passWord");
 		//判断是否为空，为空代表未登录过
 		if (id != null && passWord != null) {
 			//存储对象，传递并返回判断结果

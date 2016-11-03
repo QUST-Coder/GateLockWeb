@@ -20,7 +20,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-    <form action="<c:url value='/regist.jsp'/>" accept-charset="UTF-8" method="post">
+    <form action="<c:url value='/LoginServlet'/>" accept-charset="UTF-8" method="post">
 
          <input name="id" placeholder="管理员帐号" required/>
          <input name="passWord" type="password" placeholder="管理员密码" required/>
