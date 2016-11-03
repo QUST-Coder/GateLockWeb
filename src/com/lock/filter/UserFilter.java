@@ -11,6 +11,9 @@ import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.lock.domain.AdminUser;
+import com.lock.service.AdminLoginService;
 /**
  * 用户登录过滤器
  * @author GarryChung
@@ -26,26 +29,31 @@ public class UserFilter implements Filter {
 	}
 
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+		//准备Response和Request对象
 		HttpServletResponse httpServletResponse = (HttpServletResponse) response;
 		HttpServletRequest httpServletRequest = (HttpServletRequest) request;
-		
+		//存储用户名密码
 		String id = request.getParameter("id");
 		String passWord = request.getParameter("passWord");
-		
+		//判断是否为空，为空代表未登录过
 		if (id != null && passWord != null) {
-			if (id.equals("549876099") && passWord.equals("zwb")) {
-			chain.doFilter(request, response);
+			//存储对象，传递并返回判断结果
+			AdminUser adminUser = new AdminUser(id, passWord);
+			boolean res = new AdminLoginService(adminUser).login();
+			//判断是否登录成功
+			if (res) {
+				//登录成功，放行
+				chain.doFilter(request, response);
 			} else {
+				//登录失败
 				httpServletRequest.getSession().setAttribute("adminresult", "帐号或密码不正确！！");
 				httpServletResponse.sendRedirect(httpServletRequest.getContextPath() + "/index.jsp");
 			}
 		}else {
+			//尚未登录
 			httpServletRequest.getSession().setAttribute("adminresult", "请先进行登录！！");
 			httpServletResponse.sendRedirect(httpServletRequest.getContextPath() + "/index.jsp");
 		}
-		
-		
-		
 		
 	}
 
