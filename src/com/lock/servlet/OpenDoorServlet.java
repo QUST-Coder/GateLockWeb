@@ -31,7 +31,6 @@ public class OpenDoorServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String studentId = request.getParameter("studentId");
 		String passWord = request.getParameter("passWord");
-		System.out.println(StaticResource.connect);
 		//判断门锁是否连接
 		if (StaticResource.connect.equals("未连接")) {
 			request.getSession().setAttribute("openResult", "门锁尚未连接请联系管理员！");
