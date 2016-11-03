@@ -42,9 +42,12 @@ public class ListenerSocket implements Runnable{
 				//判断json的act字段内容，采取操作
 				jsonOperate(map);
 			} catch (IOException e) {
+				//重置静态资源
 				StaticResource.socket = null;
 				StaticResource.outputStream = null;
 				StaticResource.inputStream = null;
+				StaticResource.connect = "未连接";
+				//不再进入接收状态
 				state = false;
 				System.out.println("Socket已经删除");
 			}

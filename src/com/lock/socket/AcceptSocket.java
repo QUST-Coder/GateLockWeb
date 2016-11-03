@@ -32,7 +32,8 @@ public class AcceptSocket implements Runnable{
 				StaticResource.inputStream = socket.getInputStream();
 				//启动新线程监听
 				new Thread(new ListenerSocket(socket)).start();
-				System.out.println("Socket已连接");
+				StaticResource.connect = "已连接";
+				System.out.println("门锁已连接");
 			} catch (IOException e) {
 				e.printStackTrace();
 				System.out.println("accept异常");

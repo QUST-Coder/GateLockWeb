@@ -16,6 +16,8 @@ public class StaticResource {
 	//门锁运行状态
 	public static String time = "";
 	public static String battery = "";
+	public static String connect = "未连接";
+	
 	
 	//添加指纹返回的状态码
 	public static String addResult = "";

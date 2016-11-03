@@ -32,18 +32,11 @@ public class OpenDoorServlet extends HttpServlet {
 		String passWord = request.getParameter("passWord");
 		
 		WebOpenDoorService WebOpenDoorService = new WebOpenDoorService(studentId, passWord);
-		try {
-			//发送开门请求，由Service负责验证用户
-			String openResult = WebOpenDoorService.open();
-			//返回开门结果
-			request.getSession().setAttribute("openResult", openResult);
-			response.sendRedirect(request.getContextPath() + "/open.jsp");
-		
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		//发送开门请求，由Service负责验证用户
+		String openResult = WebOpenDoorService.open();
+		//返回开门结果
+		request.getSession().setAttribute("openResult", openResult);
+		response.sendRedirect(request.getContextPath() + "/open.jsp");
 	}
 
 }
