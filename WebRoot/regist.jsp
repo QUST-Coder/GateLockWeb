@@ -25,8 +25,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
          <input name="studentId" placeholder="学号" required/>
          <input name="passWord" type="password" placeholder="密码" required/>
 		 <input type="submit" />
+	      ${sessionScope.result}
     </form>
-      		${sessionScope.result}
     
   </body>
 </html>
