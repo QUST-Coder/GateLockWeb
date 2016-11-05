@@ -10,7 +10,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <head>
     <base href="<%=basePath%>">
     
-    <title>My JSP 'index.jsp' starting page</title>
+    <title>科协实验室门禁系统-管理员登陆</title>
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
 	<meta http-equiv="expires" content="0">    
@@ -20,13 +20,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-    <form action="<c:url value='/UserRegistServlet'/>" accept-charset="UTF-8" method="post">
-         <input name="name" placeholder="姓名" required/>
-         <input name="studentId" placeholder="学号" required/>
-         <input name="passWord" type="password" placeholder="密码" required/>
+  <a>管理员登录</a>
+    <form action="<c:url value='/LoginServlet'/>" accept-charset="UTF-8" method="post">
+
+         <input name="id" placeholder="管理员帐号" required/>
+         <input name="passWord" type="password" placeholder="管理员密码" required/>
 		 <input type="submit" />
-	      ${sessionScope.result}
     </form>
+      		${sessionScope.adminresult}
     
   </body>
 </html>

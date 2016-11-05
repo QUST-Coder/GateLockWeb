@@ -24,7 +24,7 @@ public class LoginServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.getSession().setAttribute("adminresult", "请先进行登录！！");
-		response.sendRedirect(request.getContextPath() + "/index.jsp");
+		response.sendRedirect(request.getContextPath() + "/login.jsp");
 	}
 
 
@@ -33,7 +33,7 @@ public class LoginServlet extends HttpServlet {
 		request.getSession().setAttribute("id", request.getParameter("id"));
 		request.getSession().setAttribute("passWord", request.getParameter("passWord"));
 		//转发到用户注册
-		response.sendRedirect(request.getContextPath() + "/regist.jsp");
+		response.sendRedirect(request.getContextPath() + "/admin/menu.jsp");
 	}
 
 }

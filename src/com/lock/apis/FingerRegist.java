@@ -27,6 +27,7 @@ public class FingerRegist extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		response.setHeader("Access-Control-Allow-Origin", "*");
 		FingerRegistService fingerRegistService = new FingerRegistService();
 		boolean result = fingerRegistService.regist();
 		if (result) {

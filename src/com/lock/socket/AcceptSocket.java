@@ -16,7 +16,7 @@ public class AcceptSocket implements Runnable{
 	@Override
 	public void run() {
 		try {
-			serverSocket = new ServerSocket(5000);
+			serverSocket = new ServerSocket(2333);
 		} catch (IOException e) {
 			e.printStackTrace();
 			System.out.println("2333端口被占用");

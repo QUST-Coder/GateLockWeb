@@ -27,6 +27,7 @@ public class IdDetection extends HttpServlet {
     }
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		response.setHeader("Access-Control-Allow-Origin", "*");
 		String id = (String) request.getParameter("studentId");
 		IdDetectionService idDetectionService = new IdDetectionService();
 		String result = idDetectionService.select(id);

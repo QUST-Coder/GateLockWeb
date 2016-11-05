@@ -27,6 +27,7 @@ public class RegistState extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		response.setHeader("Access-Control-Allow-Origin", "*");
 		response.getWriter().print("{\"msg\":\""+StaticResource.addResult+"\"}");
 	}
 

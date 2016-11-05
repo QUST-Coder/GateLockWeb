@@ -57,14 +57,14 @@ public class UserRegistServlet extends HttpServlet {
 				StaticResource.lockState = "";
 				StaticResource.fingerData = null;
 				request.getSession().setAttribute("result", "注册成功");
-				response.sendRedirect(request.getContextPath() + "/regist.jsp");
+				response.sendRedirect(request.getContextPath() + "/admin/regist.jsp");
 			}else {
 				request.getSession().setAttribute("result", "注册失败，请重新注册");
-				response.sendRedirect(request.getContextPath() + "/regist.jsp");
+				response.sendRedirect(request.getContextPath() + "/admin/regist.jsp");
 			}
 		}else {
 			request.getSession().setAttribute("result", "注册失败，您还没有录入指纹！");
-			response.sendRedirect(request.getContextPath() + "/regist.jsp");
+			response.sendRedirect(request.getContextPath() + "/admin/regist.jsp");
 		}
 	}
 

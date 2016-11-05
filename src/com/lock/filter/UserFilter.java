@@ -15,11 +15,11 @@ import javax.servlet.http.HttpServletResponse;
 import com.lock.domain.AdminUser;
 import com.lock.service.AdminLoginService;
 /**
- * 用户登录过滤器
+ * 管理员登录过滤器
  * @author GarryChung
  *
  */
-@WebFilter(filterName="UserFilter",urlPatterns={"/apis/*","/regist.jsp"})  
+@WebFilter(filterName="UserFilter",urlPatterns={"/apis/*","/admin/*"})  
 public class UserFilter implements Filter {
 
     public UserFilter() {
@@ -47,12 +47,12 @@ public class UserFilter implements Filter {
 			} else {
 				//登录失败
 				httpServletRequest.getSession().setAttribute("adminresult", "帐号或密码不正确！！");
-				httpServletResponse.sendRedirect(httpServletRequest.getContextPath() + "/index.jsp");
+				httpServletResponse.sendRedirect(httpServletRequest.getContextPath() + "/admin/login.jsp");
 			}
 		}else {
 			//尚未登录
-			httpServletRequest.getSession().setAttribute("adminresult", "请先进行登录！！");
-			httpServletResponse.sendRedirect(httpServletRequest.getContextPath() + "/index.jsp");
+			httpServletRequest.getSession().setAttribute("adminresult", "管理员操作，请先进行登录！！");
+			httpServletResponse.sendRedirect(httpServletRequest.getContextPath() + "/admin/login.jsp");
 		}
 		
 	}
