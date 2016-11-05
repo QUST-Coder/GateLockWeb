@@ -47,12 +47,12 @@ public class UserFilter implements Filter {
 			} else {
 				//登录失败
 				httpServletRequest.getSession().setAttribute("adminresult", "帐号或密码不正确！！");
-				httpServletResponse.sendRedirect(httpServletRequest.getContextPath() + "/admin/login.jsp");
+				httpServletResponse.sendRedirect(httpServletRequest.getContextPath() + "/login.jsp");
 			}
 		}else {
 			//尚未登录
 			httpServletRequest.getSession().setAttribute("adminresult", "管理员操作，请先进行登录！！");
-			httpServletResponse.sendRedirect(httpServletRequest.getContextPath() + "/admin/login.jsp");
+			httpServletResponse.sendRedirect(httpServletRequest.getContextPath() + "/login.jsp");
 		}
 		
 	}
