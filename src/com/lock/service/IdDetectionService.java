@@ -11,7 +11,7 @@ import com.lock.dao.Dao;
  */
 public class IdDetectionService {
 	private Dao dao = new Dao();
-	private String id = null;
+	private String id = "";
 	
 	public String select(String studentId) {
 				String sql = "SELECT studentId FROM User WHERE studentID = "+studentId+";";

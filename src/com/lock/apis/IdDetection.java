@@ -31,10 +31,10 @@ public class IdDetection extends HttpServlet {
 		String id = (String) request.getParameter("studentId");
 		IdDetectionService idDetectionService = new IdDetectionService();
 		String result = idDetectionService.select(id);
-		if (result != null) {
+//		if (result != null) {
 			if (result.equals(id)) {
 				response.getWriter().print("{\"msg\":\"success\"}");
-			}
+//			}
 		} else {
 			response.getWriter().print("{\"msg\":\"fail\"}");
 		}

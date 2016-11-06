@@ -1,7 +1,7 @@
 
 function checkID() {
-  var data = $("#user_id").val();
-  var url = "apis/iddetection";
+  var data = "studentId=" + $("#user_id").val();
+  var url = "/apis/iddetection";
 
   var success = function (resData) {
     newState = resData["message"];
@@ -34,14 +34,14 @@ function checkID() {
 
 
 function startInput() {
-  var url = "apis/fingerregist";
+  var url = "/apis/fingerregist";
 
   var success = function (resData) {
     resData = resData["messge"];
     if (resData == "fail") {
       $("#status").html("系统繁忙中，请稍后再试");
     }
-    window.location = "http://localhost:7070/recording.html"
+    window.location = "http://localhost:7070/admin/recording.html"
   }
 
   var error = function (jqxhr, errorCode) {
